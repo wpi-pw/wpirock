@@ -1,0 +1,11 @@
+# all hidden files
+/.*
+
+# all directories
+/*
+
+# wpirock gitignore exclude
+!.gitignore
+!config-wpi
+!wpirock.sh
+!README.md
