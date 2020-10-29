@@ -37,7 +37,7 @@ WpiRock is a classic WordPress stack that helps you get started with the best de
 
 - Ubuntu >= 18.04
 - PHP >= 5.6
-- Database details DB_NAME, DB_USER, DB_PASS (MySQL, MariaDB etc) 
+- MySQL
 - wget and curl
 - JQ - [Install](https://stedolan.github.io/jq/download/)
 - WP CLI - [Install](https://make.wordpress.org/cli/handbook/guides/installing/)
@@ -54,14 +54,14 @@ WpiRock is a classic WordPress stack that helps you get started with the best de
   - `DB_USER` - Database user
   - `DB_PASSWORD` - Database password
   - `DB_HOST` - Database host
-- `WP_ENVIRONMENT_TYPE` - Set to environment (`development`, `staging`, `production`)
+- `WP_ENVIRONMENT_TYPE` - Set to environment (`development`, `staging`, `production`, `custom_env`)
 - `WP_HOME` - Full URL to WordPress home (https://example.com)
 - `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com)
 - Custom variables
-3. Set project public path to `~/current_path/app`
-4. Add theme(s) via WpiRock wizard
-5. Add plugin(s) via WpiRock wizard
-6. Add must-use plugin(s) via WpiRock wizard
+3. Add theme(s) via WpiRock wizard
+4. Add plugin(s) via WpiRock wizard
+5. Add must-use plugin(s) via WpiRock wizard
+6. Set project public path to `~/current_path/app` in your server
 
 ## Documentation
 
