@@ -54,6 +54,7 @@ WpiRock is a classic WordPress stack that helps you get started with the best de
   - `DB_USER` - Database user
   - `DB_PASSWORD` - Database password
   - `DB_HOST` - Database host
+  - `DB_PREFIX` - Database prefix
 - `WP_ENVIRONMENT_TYPE` - Set to environment (`development`, `staging`, `production`, `custom_env`)
 - `WP_HOME` - Full URL to WordPress home (https://example.com)
 - `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com)
