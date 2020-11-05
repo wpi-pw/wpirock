@@ -7,6 +7,5 @@
 # wpirock gitignore exclude
 !.gitignore
 !bin
-!config-wpi
 !wpirock.sh
 !README.md

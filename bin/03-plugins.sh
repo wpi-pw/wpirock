@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# WPI Cloud - wpirock
+# WPI Cloud - wpirock plugins
 # by Dima Minka (https://dima.mk)
 # https://cloud.wpi.pw
 
