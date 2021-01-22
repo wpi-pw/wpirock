@@ -72,6 +72,3 @@ else
   yq r "$config_file" -C
   printf "\n"
 fi
-
-# TODO: remove this line when the wpi will be ready
-rm -rf config-wpi
