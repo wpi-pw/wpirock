@@ -4,5 +4,4 @@
 # by Dima Minka (https://dima.mk)
 # https://cloud.wpi.pw
 
-#bash bin/02-env.sh
-bash 01-init.sh
+bash bin/01-init.sh

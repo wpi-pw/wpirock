@@ -13,6 +13,10 @@ readonly NC='\033[0m'      # no color
 
 clear
 
+printf "%s${GRN}Installing:${NC} Connect WPIRock to the new app or existing one? [Y/n] \n"
+read -n 1 -ep "> " cur_yn
+[[ -n "$cur_yn" && ! "$cur_yn" =~ ^([yY][eE][sS]|[yY])$ ]] && exit
+
 # TODO: export to source file
 function wpi_show_options() {
   # Get options list
@@ -24,12 +28,13 @@ function wpi_show_options() {
 
 # Set the config dir and name
 readonly config_dir="config-wpi" # TODO: move to global var
-readonly config_file="$config_dir/$0"
+readonly cur_file_name=${0##*/}
+readonly config_file="$config_dir/${cur_file_name%.*}.yml"
 
 # Create config directory or exit
 if [[ -d "$config_dir" ]]; then
   printf "%s${RED}Warning:${NC} $config_dir config exist\n"
-  read -r -p "The process will remove $config_file config file! [y/N] " conf_yn
+  read -r -p "The process will remove $config_dir config file! [y/N] " conf_yn
   [[ -z "$conf_yn" || ! "$conf_yn" =~ ^([yY][eE][sS]|[yY])$ ]] && exit
   rm -rf $config_dir # Removing existing directory
   mkdir $config_dir  # Create config directory
