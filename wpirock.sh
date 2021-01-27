@@ -5,6 +5,7 @@
 # https://cloud.wpi.pw
 
 # Load cloud source scripts
+# shellcheck disable=SC1090
 case "${@: -1}" in
   --cloud | -c) source <(curl -s raw.wpi.pw/wpirock/master/bin/00-source.sh);;
   *)            source "${PWD}"/bin/00-source.sh;; # Load local source scripts
