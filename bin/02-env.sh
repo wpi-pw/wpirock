@@ -11,7 +11,7 @@ readonly BLU='\033[0;34m' # task
 readonly BRN='\033[0;33m' # headline
 readonly NC='\033[0m'     # no color
 
-printf "%s${GRN}Configuring:${NC} Put env details to config\n\n"
+printf "%s${GRN}Configuring:${NC} Inserting env details to config\n\n"
 
 # Set the config dir and name
 readonly config_dir="config-wpi" # TODO: move to global var
@@ -38,6 +38,3 @@ yq w -i $config_file  "wir_test.wp_home" "wir.test"
 printf "%s${GRN}Displaying: ${NC}$config_file\n\n"
 yq r "$config_file" -C
 printf "\n"
-
-# TODO: remove this line when the wpi will be ready
-#rm -rf config-wpi

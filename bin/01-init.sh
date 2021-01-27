@@ -13,7 +13,7 @@ readonly NC='\033[0m'      # no color
 
 clear
 
-printf "%s${GRN}Installing:${NC} Connect WPIRock to the new app or existing one? [Y/n] \n"
+printf "%s${GRN}Installing:${NC} Connect WPIRock to the new app or existing one? [Y/n] "
 read -n 1 -ep "> " cur_yn
 [[ -n "$cur_yn" && ! "$cur_yn" =~ ^([yY][eE][sS]|[yY])$ ]] && exit
 
@@ -33,9 +33,9 @@ readonly config_file="$config_dir/${cur_file_name%.*}.yml"
 
 # Create config directory or exit
 if [[ -d "$config_dir" ]]; then
-  printf "%s${RED}Warning:${NC} $config_dir config exist\n"
+  printf "%s\n${RED}Warning:${NC} $config_dir config exist\n"
   read -r -p "The process will remove $config_dir config file! [y/N] " conf_yn
-  [[ -z "$conf_yn" || ! "$conf_yn" =~ ^([yY][eE][sS]|[yY])$ ]] && exit
+  [[ -z "$conf_yn" || ! "$conf_yn" =~ ^([yY][eE][sS]|[yY])$ ]] && printf "\n"; exit
   rm -rf $config_dir # Removing existing directory
   mkdir $config_dir  # Create config directory
 else
