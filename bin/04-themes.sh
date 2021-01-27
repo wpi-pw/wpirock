@@ -53,3 +53,6 @@ printf "\n"
 printf "%s\n${GRN}Displaying: ${NC}$config\n"
 yq r $config -C
 printf "\n"
+
+# TODO: remove this line when the wpi will be ready
+rm -rf config-wpi

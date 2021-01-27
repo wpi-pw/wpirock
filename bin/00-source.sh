@@ -24,3 +24,8 @@ function wpi_show_options() {
     printf "%s${BRN}[$((i+1))]${NC} ${array[$i]}\n"
   done
 }
+
+# Create array from the external source
+function wpi_mapfile() {
+    IFS=$'\n' read -d "" -ra "$1" < "$2"
+}
