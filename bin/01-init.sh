@@ -4,42 +4,33 @@
 # by Dima Minka (https://dima.mk)
 # https://cloud.wpi.pw
 
-# Define colors
-readonly RED='\033[0;31m'  # error
-readonly GRN='\033[0;32m'  # success
-#readonly BLU='\033[0;34m' # task
-readonly BRN='\033[0;33m'  # headline
-readonly NC='\033[0m'      # no color
-
 clear
 
+# Default vars
+config_dir=""
+config_file=""
+
+# Load cloud source scripts
+# shellcheck disable=SC1090
+case "${@: -1}" in
+  --cloud | -c) source <(curl -s raw.wpi.pw/wpirock/master/bin/00-source.sh);;
+  *)            source "${PWD}"/bin/00-source.sh;; # Load local source scripts
+esac
+
 printf "%s${GRN}Installing:${NC} Connect WPIRock to the new app or existing one? [Y/n] "
+# shellcheck disable=SC2162
 read -n 1 -ep "> " cur_yn
 [[ -n "$cur_yn" && ! "$cur_yn" =~ ^([yY][eE][sS]|[yY])$ ]] && exit
-
-# TODO: export to source file
-function wpi_show_options() {
-  # Get options list
-  array=("$@")
-  for i in "${!array[@]}"; do
-    printf "%s${BRN}[$((i+1))]${NC} ${array[$i]}\n"
-  done
-}
-
-# Set the config dir and name
-readonly config_dir="config-wpi" # TODO: move to global var
-readonly cur_file_name=${0##*/}
-readonly config_file="$config_dir/${cur_file_name%.*}.yml"
 
 # Create config directory or exit
 if [[ -d "$config_dir" ]]; then
   printf "%s\n${RED}Warning:${NC} $config_dir config exist\n"
   read -r -p "The process will remove $config_dir config file! [y/N] " conf_yn
-  [[ -z "$conf_yn" || ! "$conf_yn" =~ ^([yY][eE][sS]|[yY])$ ]] && printf "\n"; exit
-  rm -rf $config_dir # Removing existing directory
-  mkdir $config_dir  # Create config directory
+  [[ -z "$conf_yn" || ! "$conf_yn" =~ ^([yY][eE][sS]|[yY])$ ]] && exit
+  rm -rf "$config_dir" # Removing existing directory
+  mkdir "$config_dir"  # Create config directory
 else
-  mkdir $config_dir  # Create config directory
+  mkdir "$config_dir"  # Create config directory
 fi
 
 # Create current config file
@@ -48,7 +39,7 @@ touch "$config_file"
 # Supported local workflows
 arr=('local_wp' 'docker' 'vagrant')
 
-printf "%s${GRN}Installing:${NC} Choose your local development workflow or press Enter for ${BRN}${arr[0]}${NC}:\n\n"
+printf "%s\n${GRN}Installing:${NC} Choose your local development workflow or press Enter for ${BRN}${arr[0]}${NC}:\n\n"
 
 # Display options list
 wpi_show_options "${arr[@]}"
