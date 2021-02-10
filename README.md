@@ -35,6 +35,7 @@ WpiRock is a classic WordPress stack that helps you get started with the best de
 
 ## Requirements
 
+### Ubuntu stack:
 - Ubuntu >= 18.04
 - PHP >= 5.6
 - MySQL
@@ -42,27 +43,22 @@ WpiRock is a classic WordPress stack that helps you get started with the best de
 - JQ - [Install](https://stedolan.github.io/jq/download/)
 - WP CLI - [Install](https://make.wordpress.org/cli/handbook/guides/installing/)
 
+### macOS stack:
+- macOS Big Sur
+- LocalWP - [Install](https://localwp.com)
+- JQ - [Install](https://stedolan.github.io/jq/download/)
+
 ## Installation
 
-1. Create a new project:
+1. Run WpiRock in exist clean WordPress installation:
    ```sh
    $ wget -qO wpirock.sh wpi.pw/bin/wpirock.sh && bash wpirock.sh
    ```
-2. Update environment variables with WpiRock cli wizard
-- Database variables
-  - `DB_NAME` - Database name
-  - `DB_USER` - Database user
-  - `DB_PASSWORD` - Database password
-  - `DB_HOST` - Database host
-  - `DB_PREFIX` - Database prefix
-- `WP_ENVIRONMENT_TYPE` - Set to environment (`development`, `staging`, `production`, `custom_env`)
-- `WP_HOME` - Full URL to WordPress home (https://example.com)
-- `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com)
-- Custom variables
-3. Add theme(s) via WpiRock wizard
+2. Choose for existing WpiRock workflow and create new one
+3. Choose the local workflow
 4. Add plugin(s) via WpiRock wizard
-5. Add must-use plugin(s) via WpiRock wizard
-6. Set project public path to `~/current_path/app` in your server
+5. Add theme(s) via WpiRock wizard
+6. Add default settings for your WordPress installation
 
 ## Documentation
 
