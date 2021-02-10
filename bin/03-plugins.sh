@@ -40,6 +40,5 @@ else
   printf "\n%s${BRN}Skip:${NC} Primary plugins installing\n"
 fi
 
-printf "%s\n${GRN}Displaying: ${NC}$config_file\n\n"
-yq r "$config_file" -C
-printf "\n"
+# Show current config
+wpi_show_conf

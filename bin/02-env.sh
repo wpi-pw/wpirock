@@ -33,6 +33,5 @@ yq w -i "$config_file"  "wir_test.db_prefix" "wp_wpi_"
 yq w -i "$config_file"  "wir_test.wp_environment_type" "development"
 yq w -i "$config_file"  "wir_test.wp_home" "wir.test"
 
-printf "%s${GRN}Displaying: ${NC}$config_file\n\n"
-yq r "$config_file" -C
-printf "\n"
+# Show current config
+wpi_show_conf

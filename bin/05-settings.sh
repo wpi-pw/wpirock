@@ -4,32 +4,32 @@
 # by Dima Minka (https://dima.mk)
 # https://cloud.wpi.pw
 
-# Define colors
-#readonly RED='\033[0;31m' # error
-readonly GRN='\033[0;32m' # success
-readonly BRN='\033[0;33m' # headline
-readonly NC='\033[0m'     # no color
+# Default vars
+config_file=""
 
-# Set the config name
-readonly config_dir="config-wpi"
+# Load cloud source scripts
+# shellcheck disable=SC1090
+case "${@: -1}" in
+  --cloud | -c) source <(curl -s raw.wpi.pw/wpirock/master/bin/00-source.sh);;
+  *)            source "${PWD}"/bin/00-source.sh;; # Load local source scripts
+esac
 
-# Set init config path
-config="$config_dir/05-settings.yml"
-touch $config
+# Create current config file
+touch "$config_file"
 
-printf "%s${GRN}Displaying:${NC} Primary settings list:\n"
+printf "%s${GRN}Displaying:${NC} Primary settings list:\n\n"
 # Show primary list of settings from github
 yq r <(curl -s -L raw.wpi.pw/wp-settings/main/primary.yml) -C
 
-printf "%s${GRN}Installing:${NC} Add settings to the project? "
-read -r -p "[y/N] " conf_yn
+printf "\n%s${GRN}Installing:${NC} Add settings to the project? [y/N] "
+# shellcheck disable=SC2162
+read -n 1 -ep "> " cur_yn
 
-if [[ "$conf_yn" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  cat <(curl -s -L raw.wpi.pw/wp-settings/main/primary.yml) > $config
+if [[ "$cur_yn" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  cat <(curl -s -L raw.wpi.pw/wp-settings/main/primary.yml) > "$config_file"
 else
   printf "%s${BRN}Skip:${NC} Primary settings installing\n"
 fi
 
-printf "%s\n${GRN}Displaying: ${NC}$config\n"
-yq r $config -C
-printf "\n"
+# Show current config
+wpi_show_conf
